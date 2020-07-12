@@ -18,8 +18,10 @@ function App() {
     //setRepository([...repositories, `Novo repositorio ${Date.now()}`])
 
     const response = await api.post('repositories', {
-      title: `Novo repositorio`,
-      url: `http://github.com/`
+      title: `Repository ${Date.now()}`,
+      url: `https://github.com/rocketseat/${Date.now()}`,
+      techs: ["Node", "Express", "TypeScript"],
+      likes: 0
     })
     //console.log(repositories);
     const repository = response.data;
@@ -42,8 +44,8 @@ function App() {
       <ul data-testid="repository-list">
       {repositories.map((repository) => (
       <li key={repository.id}>
-          Repositório 1
            {repository.title} 
+
           <button onClick={() => handleRemoveRepository(repository.id)}>
             Remover
           </button>
@@ -51,7 +53,9 @@ function App() {
       ))}
       </ul>
 
-      <button onClick={handleAddRepository}>Adicionar</button>
+      <button onClick={handleAddRepository}>
+        Adicionar
+      </button>
     </div>
   );
 }
